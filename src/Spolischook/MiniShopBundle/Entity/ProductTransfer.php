@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="product_transfer")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class ProductTransfer
 {
@@ -23,7 +24,7 @@ class ProductTransfer
     private $id;
 
     /**
-     * @var
+     * @var Store
      *
      * @ORM\ManyToOne(targetEntity="Store")
      * @ORM\JoinColumn(name="from_store_id", referencedColumnName="id")
@@ -31,7 +32,7 @@ class ProductTransfer
     private $storeFrom;
 
     /**
-     * @var
+     * @var Store
      *
      * @ORM\ManyToOne(targetEntity="Store")
      * @ORM\JoinColumn(name="to_store_id", referencedColumnName="id")
@@ -39,7 +40,14 @@ class ProductTransfer
     private $storeTo;
 
     /**
-     * @var
+     * @var integer
+     *
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    private $quantity;
+
+    /**
+     * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      * @Gedmo\Timestampable(on="create")
@@ -123,5 +131,38 @@ class ProductTransfer
     public function getStoreTo()
     {
         return $this->storeTo;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     * @return ProductTransfer
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateStoresQuantity()
+    {
+        $this->storeFrom->setProductQuantity($this->storeFrom->getProductQuantity() - $this->quantity);
+        $this->storeTo->setProductQuantity($this->storeTo->getProductQuantity() + $this->quantity);
     }
 }
