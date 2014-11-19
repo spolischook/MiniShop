@@ -2,6 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Controller;
 
+use Spolischook\MiniShopBundle\Entity\ProductTransfer;
 use Spolischook\MiniShopBundle\Entity\Store;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,6 +36,38 @@ class StoreController extends Controller
         }
 
         return ['products' => $this->getProductRepository()->findAll()];
+    }
+
+    /**
+     * @Template()
+     * @Route("/transfer")
+     * @Method({"GET", "POST"})
+     */
+    public function transferAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $storeFrom = $this->getStoreRepository()->find($request->request->get('from'));
+            $storeTo   = $this->getStoreRepository()->find($request->request->get('to'));
+            $quantity  = $request->request->get('quantity');
+
+            if ($storeFrom->getId() === $storeTo->getId()) {
+                throw new \Exception('You can\'t move product to the same store');
+            }
+
+            $productTransfer = new ProductTransfer();
+            $productTransfer
+                ->setStoreFrom($storeFrom)
+                ->setStoreTo($storeTo)
+                ->setQuantity($quantity)
+            ;
+
+            $this->getDoctrine()->getManager()->persist($productTransfer);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
+        }
+
+        return ['stores' => $this->getStoreRepository()->findAll()];
     }
 
     /**
