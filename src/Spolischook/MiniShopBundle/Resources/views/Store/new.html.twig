@@ -8,8 +8,8 @@
         <div class="col-md-4">
             <form role="form" method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Название склада</label>
-                    <input name="title" type="text" class="form-control" id="title" placeholder="Title склад">
+                    <label for="title">Название склада</label>
+                    <input name="title" type="text" required class="form-control" id="title" placeholder="Title склад">
                 </div>
                 <select name="product" class="form-control">
                     {% for product in products %}
