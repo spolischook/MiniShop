@@ -63,6 +63,14 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            softdeleteable: true
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
