@@ -25,7 +25,7 @@ class StoreController extends Controller
             $store = new Store();
             $store
                 ->setTitle($request->request->get('title'))
-                ->setProduct($this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Product')->find($request->request->get('product')))
+                ->setProduct($this->getProductRepository()->find($request->request->get('product')))
             ;
 
             $this->getDoctrine()->getManager()->persist($store);
@@ -34,7 +34,7 @@ class StoreController extends Controller
             return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
         }
 
-        return ['products' => $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Product')->findAll()];
+        return ['products' => $this->getProductRepository()->findAll()];
     }
 
     /**
@@ -44,6 +44,21 @@ class StoreController extends Controller
      */
     public function getAction($slug)
     {
-        return ['store' => $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->findOneBySlug($slug)];
+        return ['store' => $this->getStoreRepository()->findOneBySlug($slug)];
+    }
+
+    protected function getEm()
+    {
+        return $this->getDoctrine()->getManager();
+    }
+
+    protected function getStoreRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store');
+    }
+
+    protected function getProductRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Product');
     }
 }
