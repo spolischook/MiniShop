@@ -17,8 +17,21 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        $stores = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->findAll();
+        $stores         = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->findAll();
+        $totalInStores  = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->getTotalInStores();
+        $totalSales     = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalSalesCount();
+        $totalGifts     = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalGiftsCount();
+        $totalCash      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalCash();
+        $totalCard      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalCard();
 
-        return ['stores' => $stores];
+        return [
+            'stores'        => $stores,
+            'totalInStores' => $totalInStores,
+            'totalSales'    => $totalSales,
+            'totalGifts'    => $totalGifts,
+            'totalCash'     => $totalCash,
+            'totalCard'     => $totalCard,
+            'product'       => $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Product')->findAll()[0],
+        ];
     }
 }

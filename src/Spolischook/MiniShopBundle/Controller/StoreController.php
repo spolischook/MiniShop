@@ -2,8 +2,12 @@
 
 namespace Spolischook\MiniShopBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use Spolischook\MiniShopBundle\Entity\ProductSale;
 use Spolischook\MiniShopBundle\Entity\ProductTransfer;
 use Spolischook\MiniShopBundle\Entity\Store;
+use Spolischook\MiniShopBundle\Repository\StoreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,13 +44,14 @@ class StoreController extends Controller
 
     /**
      * @Template()
-     * @Route("/transfer")
+     * @Route("/transfer/{slug}")
      * @Method({"GET", "POST"})
      */
-    public function transferAction(Request $request)
+    public function transferAction(Request $request, $slug)
     {
+        $storeFrom = $this->getStoreRepository()->findOneBySlug($slug);
+
         if ($request->isMethod('POST')) {
-            $storeFrom = $this->getStoreRepository()->find($request->request->get('from'));
             $storeTo   = $this->getStoreRepository()->find($request->request->get('to'));
             $quantity  = $request->request->get('quantity');
 
@@ -67,7 +72,35 @@ class StoreController extends Controller
             return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
         }
 
-        return ['stores' => $this->getStoreRepository()->findAll()];
+        return ['stores' => $this->getStoreRepository()->findAllExceptOne($storeFrom), 'storeFrom' => $storeFrom];
+    }
+
+    /**
+     * @Template()
+     * @Route("/sales/{slug}")
+     * @Method({"GET", "POST"})
+     */
+    public function saleAction(Request $request, $slug)
+    {
+        $store = $this->getStoreRepository()->findOneBySlug($slug);
+
+        if ($request->isMethod('POST')) {
+            $productSale = new ProductSale();
+            $productSale
+                ->setStore($store)
+                ->setQuantity($request->request->get('quantity'))
+                ->setPrice($request->request->get('price'))
+                ->setMethodOfPayment($request->request->get('method-of-payment'))
+                ->setComment($request->request->get('comment'))
+            ;
+
+            $this->getDoctrine()->getManager()->persist($productSale);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
+        }
+
+        return ['store' => $store];
     }
 
     /**
@@ -80,16 +113,25 @@ class StoreController extends Controller
         return ['store' => $this->getStoreRepository()->findOneBySlug($slug)];
     }
 
+    /**
+     * @return EntityManager
+     */
     protected function getEm()
     {
         return $this->getDoctrine()->getManager();
     }
 
+    /**
+     * @return StoreRepository
+     */
     protected function getStoreRepository()
     {
         return $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store');
     }
 
+    /**
+     * @return EntityRepository
+     */
     protected function getProductRepository()
     {
         return $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Product');

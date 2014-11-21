@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Store
  *
  * @ORM\Table(name="store")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Spolischook\MiniShopBundle\Repository\StoreRepository")
  */
 class Store
 {
@@ -48,6 +48,21 @@ class Store
      * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Product", inversedBy="stores")
      */
     private $product;
+
+    /**
+     * @var \Spolischook\MiniShopBundle\Entity\ProductSale
+     *
+     * @ORM\OneToMany(targetEntity="Spolischook\MiniShopBundle\Entity\ProductSale", mappedBy="store")
+     */
+    private $productSales;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->productSales = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,6 +105,10 @@ class Store
      */
     public function setProductQuantity($productQuantity)
     {
+        if ($productQuantity < 0) {
+            throw new \Exception('Quantity can\'t be less then zero');
+        }
+
         $this->productQuantity = $productQuantity;
 
         return $this;
@@ -149,5 +168,72 @@ class Store
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Add productSales
+     *
+     * @param \Spolischook\MiniShopBundle\Entity\ProductSale $productSales
+     * @return Store
+     */
+    public function addProductSale(\Spolischook\MiniShopBundle\Entity\ProductSale $productSales)
+    {
+        $this->productSales[] = $productSales;
+
+        return $this;
+    }
+
+    /**
+     * Remove productSales
+     *
+     * @param \Spolischook\MiniShopBundle\Entity\ProductSale $productSales
+     */
+    public function removeProductSale(\Spolischook\MiniShopBundle\Entity\ProductSale $productSales)
+    {
+        $this->productSales->removeElement($productSales);
+    }
+
+    /**
+     * Get productSales
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductSales()
+    {
+        return $this->productSales;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGiftItemsCount()
+    {
+        $giftItems = 0;
+
+        /** @var ProductSale $productSale */
+        foreach ($this->getProductSales() as $productSale) {
+            if ($productSale->getPrice() == 0) {
+                $giftItems += $productSale->getQuantity();
+            }
+        }
+
+        return $giftItems;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSalesItemsCount()
+    {
+        $salesItems = 0;
+
+        /** @var ProductSale $productSale */
+        foreach ($this->getProductSales() as $productSale) {
+            if ($productSale->getPrice() > 0) {
+                $salesItems += $productSale->getQuantity();
+            }
+        }
+
+        return $salesItems;
     }
 }

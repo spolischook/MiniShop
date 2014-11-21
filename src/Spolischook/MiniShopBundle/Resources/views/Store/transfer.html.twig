@@ -8,16 +8,13 @@
         <div class="col-md-4">
             <form role="form" method="post">
                 <div class="form-group">
-                    <label for="from">Название склада</label>
-                    <select name="from" class="form-control">
-                        {% for store in stores %}
-                            <option value="{{ store.id }}">{{ store.title }}</option>
-                        {% endfor %}
-                    </select>
+                    <label for="from">Со склада</label>
+                    <input name="store" id="from" type="text" disabled required class="form-control" value="{{ storeFrom.title }}" />
                 </div>
                 <div class="form-group">
-                    <label for="to">Название склада</label>
-                    <select name="to" class="form-control">
+                    <label for="to">На склад</label>
+                    <select name="to" id="to" class="form-control">
+                        <option disabled>Выберите склад</option>
                         {% for store in stores %}
                             <option value="{{ store.id }}">{{ store.title }}</option>
                         {% endfor %}
@@ -25,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="quantity">Количество</label>
-                    <input name="quantity" type="number" required class="form-control" id="quantity" placeholder="Количество">
+                    <input name="quantity" type="number" min="1" required class="form-control" id="quantity" placeholder="Количество">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-default">Создать</button>

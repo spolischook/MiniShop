@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  */
-class ProductTransfer
+class ProductTransfer implements ProductMovingInterface
 {
     /**
      * @var integer
@@ -158,11 +158,26 @@ class ProductTransfer
 
     /**
      * @ORM\PrePersist
-     * @ORM\PreUpdate
      */
     public function updateStoresQuantity()
     {
         $this->storeFrom->setProductQuantity($this->storeFrom->getProductQuantity() - $this->quantity);
         $this->storeTo->setProductQuantity($this->storeTo->getProductQuantity() + $this->quantity);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->getStoreFrom()->getTitle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTo()
+    {
+        return $this->getStoreTo()->getTitle();
     }
 }

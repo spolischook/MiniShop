@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Движение товаров{% endblock %}
+{% block container %}
+    <h2>Движение товаров</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <tr>
+                    <th>Дата</th>
+                    <th>From</th>
+                    <th></th>
+                    <th>To</th>
+                    <th>Количество</th>
+                </tr>
+                {% for productMoving in productMovings %}
+                    {% if loop.first %}
+                        <tr><td colspan="5"><h4>{{ productMoving.createdAt|date('F') }}</h4></td></tr>
+                    {% elseif productMoving.createdAt|date('F') != previousProductMoving.createdAt|date('F') %}
+                        <tr><td colspan="5"><h4>{{ productMoving.createdAt|date('F') }}</h4></td></tr>
+                    {% endif %}
+                        <tr>
+                            <td>
+                                {% if loop.first or productMoving.createdAt|date("Y-m-d") != previousProductMoving.createdAt|date("Y-m-d") %}
+                                    {{ productMoving.createdAt|date("Y-m-d") }}
+                                {% endif %}
+                            </td>
+                            <td>{{ productMoving.from }}</td>
+                            <td><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></td>
+                            <td>{{ productMoving.to }}</td>
+                            <td>{{ productMoving.quantity }}</td>
+                        </tr>
+                    {% set previousProductMoving = productMoving %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
