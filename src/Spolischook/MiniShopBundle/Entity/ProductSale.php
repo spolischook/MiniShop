@@ -35,7 +35,7 @@ class ProductSale implements ProductMovingInterface
     private $store;
 
     /**
-     * @var string
+     * @var integer
      *
      * @ORM\Column(name="quantity", type="integer")
      */
