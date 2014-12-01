@@ -661,12 +661,14 @@ section#buy .section-heading {
     color: #fff;
 }
 
-section#buy .form-group {
+section#buy .form-group,
+section#buy .bootstrap-select {
     margin-bottom: 25px;
 }
 
 section#buy .form-group input,
-section#buy .form-group textarea {
+section#buy .form-group textarea,
+section#buy .form-group button.dropdown-toggle {
     padding: 20px;
 }
 
