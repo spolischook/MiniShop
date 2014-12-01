@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
             new \Spolischook\MiniShopBundle\MiniShopBundle(),
+            new \Spolischook\CalendarBundle\CalendarBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

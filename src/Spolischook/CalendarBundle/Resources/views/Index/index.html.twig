@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ексклюзивний арт календар на 2015 рік">
+    <meta name="author" content="Тетяна Черевань">
+
+    <title>Календар на 2015 рік</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    {% stylesheets '@CalendarBundle/Resources/public/css/*' filter='uglifycss' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Навігація</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" style="font-family: 'Lobster', cursive;" href="#page-top">від Тетяни Черевань</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#calendar">Календар</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#how-to-buy">Як купити</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">Благодійність</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#team">Про автора</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#buy">Замовити</a>
+                </li>
+                <li>
+                    <a href="tel:+380934187575" style="padding: 0 15px">+380 93 418 75 75</a>
+                    <a href="tel:+380975555555" style="padding: 0 15px">+380 97 555 55 55</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- Header -->
+<header data-stellar-background-ratio="0.2">
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-heading">Арт календар 2015</div>
+            <div class="intro-lead-in">Ексклюзивний арт календар на 2015 рік</div>
+            <a href="" class="page-scroll btn btn-xl">Купити зараз за 120 грн<br><i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-mastercard fa-2x"></i></a>
+        </div>
+    </div>
+</header>
+
+
+<!-- Portfolio Grid Section -->
+<section id="calendar" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Календар</h2>
+                <h3 class="section-subheading text-muted">Як виглядає кожен місяць календаря</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/01.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Січень</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/02.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Лютий</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/03.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Березень</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/04.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Квітень</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/05.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Травень</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <img src="img/calendar/06.jpg" class="img-responsive" alt="">
+                <div class="portfolio-caption">
+                    <h4>Червень</h4>
+                </div>
+            </div>
+            <div id="other-month">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/07.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Липень</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/08.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Серпень</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/09.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Вересень</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/10.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Жовтень</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/11.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Листопад</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar/12.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Грудень</h4>
+                    </div>
+                </div>
+            </div>
+            <a href="" class="btn btn-xl" id="show-more-month" style="width: 100%">Дивитись інші місяці</a>
+            <!--<div class="col-md-4 col-sm-6 portfolio-item">-->
+            <!--<a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">-->
+            <!--<div class="portfolio-hover">-->
+            <!--<div class="portfolio-hover-content">-->
+            <!--<i class="fa fa-plus fa-3x"></i>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<img src="img/portfolio/dreams.png" class="img-responsive" alt="">-->
+            <!--</a>-->
+            <!--<div class="portfolio-caption">-->
+            <!--<h4>Dreams</h4>-->
+            <!--<p class="text-muted">Website Design</p>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="how-to-buy">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Як купити</h2>
+                <h3 class="section-subheading text-muted">Три простих кроки</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Замовте календар</h4>
+                <p class="text-muted">Ви можете замовити календар прямо на сайті</p>
+                <a href="" class="page-scroll btn btn-xl">Купити зараз за 120 грн<br><i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-mastercard fa-2x"></i></a>
+                <p class="text-muted">або замовити за телефоном</p>
+                <a href="tel:+380934187575" style="padding: 0 15px">+380 93 418 75 75</a>
+                <a href="tel:+380975555555" style="padding: 0 15px">+380 97 555 55 55</a>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-cc-visa fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Оплатіть рахунок</h4>
+                <p class="text-muted">При замовленні з цього сайту ви можете оплатити карткою любого банку, абож ви можете замовити рахунок за телефоном і оплатити у кассі любого банку</p>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Отримайте замовлення</h4>
+                <p class="text-muted">Отримайте зручним для вас способом. Ми відсилаємо Новою Поштою або Укрпоштою</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Благодійність</h2>
+                <h3 class="section-subheading text-muted" style="margin-bottom: 10px">Усі кошти від продажу календаря будуть передані онкохворим дітям</h3>
+                <div class="col-md-12 col-sm-12" style="margin-bottom: 10px">
+                    <a href="" class="page-scroll btn btn-xl">
+                        <i class="fa fa-cc-visa fa-2x"></i>
+                        <i class="fa fa-cc-mastercard fa-2x"></i>
+                        Купити календар за 120 грн
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-4 portfolio-item">
+                    <img src="img/about/kudi-tikayut-mriyi.jpg" class="image-center img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Куди тікають мрії</h4>
+                        <p class="text-muted">У 2008 році було створено серію робіт "Куди тікають мрії" спеціально для дитячого відділення Черкаської обласної лікарні</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 portfolio-item">
+                    <img src="img/about/oblasna-likarnya.jpg" class="image-center img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Картина для Дитячої обласної лікарні</h4>
+                        <p class="text-muted">1 червня 2011, в День захисту дітей розпочала свою роботу новозбудована Черкаська обласна дитяча лікарня. З нагоди відкриття в інтер’єр закладу було подаровано роботу "Бирюзовая нежность накроет меня"</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 portfolio-item">
+                    <img src="img/about/onkolikarnya.jpg" class="image-center img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Благодійний календар 2012</h4>
+                        <p class="text-muted">У 2012 році з продажу календаря було зібрано 13 тис грн. На всю сумму було замовлено препарати. Деякі з них дуже рідкісні і необхідні.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Тетяна Черевань</h2>
+                <h3 class="section-subheading text-muted">Художниця, супперчуттева та натхненна пристрастю до жінок</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="team-member">
+                    <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <p class="large text-muted">Сьогодення як ніколи вимагає він нас документування. Інформаційний простір пересичений фотографіями наших воїнів та війни загалом. А ця серія робіт від Тетяни Черевань - своєрідний документ про тих, хто не лише чекає, але й робить все, що у жіночій силі, щоб хлопці повернулись з війни додому.</p>
+                <p class="large text-muted">Абстрактне донині слово берегиня у нашому сьогоденні набуло цілком конкретних імен. Зараз воно найчастіше замінюється словом волонтер, але в історію ці жінки увійдуть саме як Берегині. І не тільки солдатського життя, але й самої України.</p>
+
+                <p class="large text-muted">Художниця вдало поєднала у своїх роботах олівець -- як інструмент строгої документальності, та сучасні кольорові засоби -- як засіб надати портретам романтизму та декоративності, які і перетворюють конкретну жінку на загальний історичний символ.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Aside -->
+<aside class="clients">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <a href="#">
+                    <img src="img/logos/end-polio-now.jpg" class="img-responsive img-centered" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#">
+                    <img src="img/logos/patisserie-makarun.jpg" class="img-responsive img-centered" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#">
+                    <img src="img/logos/alik.jpg" class="img-responsive img-centered" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#">
+                    <img src="img/logos/press-inform.jpg" class="img-responsive img-centered" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<section id="buy">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Замовити календар</h2>
+                <h3 class="section-subheading text-muted">Доставляемо по всьому світу</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form method="POST" name="sentMessage" novalidate action="https://www.liqpay.com/api/pay">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {#<input type="text" class="form-control" placeholder="Повне ім’я отримувача *" id="name" required data-validation-required-message="Ви не ввели ім’я, це поле обов’язкове.">#}
+                                {{ form_widget(form.name, { 'attr': {'placeholder': 'Повне ім’я отримувача *'} }) }}
+                                {{ form_errors(form.name, { 'attr': {'class': 'help-block text-danger'} }) }}
+                                {#<p class="help-block text-danger"></p>#}
+                            </div>
+                            <div class="form-group">
+                                {#<input type="email" class="form-control" placeholder="Адреса отримувача *" id="address" required data-validation-required-message="Адреса отримувача обов’язкова">#}
+                                {{ form_widget(form.country, { 'attr': {'placeholder': 'Країна *'} }) }}
+                                {{ form_errors(form.country, { 'attr': {'class': 'help-block text-danger'} }) }}
+                                {#<p class="help-block text-danger"></p>#}
+                            </div>
+                            <div class="form-group">
+                                {#<input type="tel" class="form-control" placeholder="Телефон для зв’язку *" id="phone" required data-validation-required-message="Телефон обов’язковий для заповнення">#}
+                                {{ form_widget(form.address, { 'attr': {'placeholder': 'Адреса отримувача *'} }) }}
+                                {{ form_errors(form.address, { 'attr': {'class': 'help-block text-danger'} }) }}
+                                {#<p class="help-block text-danger"></p>#}
+                            </div>
+                            <div class="form-group">
+                                {#<input type="tel" class="form-control" placeholder="Телефон для зв’язку *" id="phone" required data-validation-required-message="Телефон обов’язковий для заповнення">#}
+                                {{ form_widget(form.phone, { 'attr': {'placeholder': 'Телефон для зв’язку *'} }) }}
+                                {{ form_errors(form.phone, { 'attr': {'class': 'help-block text-danger'} }) }}
+                                {#<p class="help-block text-danger"></p>#}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Напишіть будь що, що забажаєте (необов’язково)" id="message" ></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <input type="hidden" name="public_key" value="i16198208315" />
+                            <input type="hidden" name="amount" value="100" />
+                            <input type="hidden" name="currency" value="UAH" />
+                            <input type="hidden" name="description" value="Календар на 2015 рік" />
+                            <input type="hidden" name="type" value="buy" />
+                            <input type="hidden" name="pay_way" value="card,delayed" />
+                            <input type="hidden" name="server_url" value="http://calendar-2015.pp.ua/payment-check" />
+                            <input type="hidden" name="order_id" value="123456" />
+                            <input type="hidden" name="language" value="ru" />
+                            <button type="submit" class="btn btn-xl">Замовити</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; Тетяна Черевань 2014</span>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li><a href="#">Privacy Policy</a>
+                    </li>
+                    <li><a href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Portfolio Modals -->
+<!-- Use the modals below to showcase details about your portfolio projects! -->
+
+<!-- Portfolio Modal 1 -->
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Project Name</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive" src="img/portfolio/roundicons-free.png" alt="">
+                        <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                        <p>
+                            <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
+                        <ul class="list-inline">
+                            <li>Date: July 2014</li>
+                            <li>Client: Round Icons</li>
+                            <li>Category: Graphic Design</li>
+                        </ul>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 2 -->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Project Heading</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/startup-framework-preview.png" alt="">
+                        <p><a href="http://designmodo.com/startup/?u=787">Startup Framework</a> is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.</p>
+                        <p>You can preview Startup Framework <a href="http://designmodo.com/startup/?u=787">here</a>.</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 3 -->
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Project Name</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/treehouse-preview.png" alt="">
+                        <p>Treehouse is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.</p>
+                        <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/">FreebiesXpress.com</a>.</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 4 -->
+<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Project Name</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/golden-preview.png" alt="">
+                        <p>Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.</p>
+                        <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/golden-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 5 -->
+<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Project Name</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/escape-preview.png" alt="">
+                        <p>Escape is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.</p>
+                        <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/">FreebiesXpress.com</a>.</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 6 -->
+<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Project Name</h2>
+                        <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/dreams-preview.png" alt="">
+                        <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
+                        <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+{% javascripts '@CalendarBundle/Resources/public/js/*' filter='uglifyjs2' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $.stellar();
+        $('#other-month').hide();
+        $('#show-more-month').click(function (e) {
+            e.preventDefault();
+
+            $('#other-month').show(500);
+            $(this).remove();
+        });
+    });
+</script>
+
+</body>
+
+</html>
