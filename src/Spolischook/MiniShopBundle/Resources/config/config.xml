@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:doctrine="http://symfony.com/schema/dic/doctrine">
+
+    <services>
+        <service id="my.subscriber" class="Spolischook\MiniShopBundle\EventListener\OrderSubscriber">
+            <argument type="string">%secret%</argument>
+            <tag name="doctrine.event_subscriber" connection="default" />
+        </service>
+    </services>
+</container>
