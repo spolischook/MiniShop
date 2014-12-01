@@ -2,6 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Form\Type;
 
+use Spolischook\MiniShopBundle\Entity\Countries;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,7 +13,11 @@ class OrderType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('country')
+            ->add('country', 'choice', [
+                'choices' => Countries::$countries,
+                'preferred_choices' => ['UA', 'US', 'CA', 'DE', 'AU'],
+                'data' => 'UA',
+            ])
             ->add('address')
             ->add('phone')
             ->add('comment')
