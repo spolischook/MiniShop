@@ -677,7 +677,7 @@ section#buy .form-group input.form-control {
 }
 
 section#buy .form-group textarea.form-control {
-    height: 408px;
+    height: 234px;
 }
 
 section#buy .form-control:focus {
@@ -866,4 +866,38 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.counter {
+    margin-top: 40px;
+    text-shadow: 0 1px 5px rgba(0,0,0,.1);
+}
+
+.counter .count-wrapper,
+.counter .money-wrapper {
+    display: inline-block;
+    width: 270px;
+    height: 120px;
+    margin: 0 10px;
+    padding-top: 20px;
+    background: #2d2d2d; /* browsers that don't support rgba */
+    background: rgba(45,45,45,.7);
+    font-size: 18px;
+    -moz-border-radius: 80px;
+    -webkit-border-radius: 80px;
+    border-radius: 80px;
+    font-family: 'Lato', Arial, sans-serif;
+    font-weight: 400;
+}
+
+.counter .count-wrapper:hover,
+.counter .money-wrapper:hover {
+    background: #db384c url(/../img/pattern-2.png);
+    text-shadow: none;
+}
+
+.counter .count,
+.counter .money {
+    font-size: 60px;
+    line-height: 60px;
 }

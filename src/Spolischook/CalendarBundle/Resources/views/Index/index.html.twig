@@ -91,7 +91,15 @@
         <div class="intro-text">
             <div class="intro-heading">Арт календар 2015</div>
             <div class="intro-lead-in">Ексклюзивний арт календар на 2015 рік</div>
-            <a href="#buy" class="page-scroll btn btn-xl">Купити зараз за 120 грн<br><i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-mastercard fa-2x"></i></a>
+            <a href="#buy" class="page-scroll btn btn-xl">Купити зараз за 120 грн<br><i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-mastercard fa-2x"></i><br><small>Усі зібрані кошти онкохворми дітям</small></a>
+            <div class="counter">
+                <div class="count-wrapper">
+                    <span class="count count-up">398</span> <br>Залишилось календарів
+                </div>
+                <div class="money-wrapper">
+                    <span class="money count-up">4200</span> <br>Зібрано коштів (грн)
+                </div>
+            </div>
         </div>
     </div>
 </header>
@@ -349,10 +357,6 @@
                                 {{ form_errors(form.name, { 'attr': {'class': 'help-block text-danger'} }) }}
                             </div>
                             <div class="form-group">
-                                {{ form_widget(form.quantity, { 'attr': {'placeholder': 'Кількість календарів *'} }) }}
-                                {{ form_errors(form.quantity, { 'attr': {'class': 'help-block text-danger'} }) }}
-                            </div>
-                            <div class="form-group">
                                 {{ form_widget(form.country, { 'attr': {'placeholder': 'Країна *', 'data-live-search': 'true', 'class': 'selectpicker'} }) }}
                                 {{ form_errors(form.country, { 'attr': {'class': 'help-block text-danger'} }) }}
                             </div>
@@ -366,6 +370,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group" style="height: 62px;">
+                                {{ form_label(form.quantity, "quantity", { 'label_attr': { 'style': 'max-width: 30%; color: #FFFFFF; float: left; text-transform: uppercase; font-family: Ubuntu,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 400; padding-top: 15px;' } }) }}
+                                {{ form_widget(form.quantity, { 'attr': {'placeholder': 'Кількість календарів *', 'style': 'max-width: 70%; float: right', 'min': '1'} }) }}
+                                {{ form_errors(form.quantity, { 'attr': {'class': 'help-block text-danger'} }) }}
+                            </div>
                             <div class="form-group">
                                 {{ form_widget(form.comment, { 'attr': {'placeholder': 'Напишіть будь що, що забажаєте (необов’язково)'} }) }}
                                 {{ form_errors(form.comment, { 'attr': {'class': 'help-block text-danger'} }) }}
@@ -423,16 +432,32 @@
             $('#other-month').show(500);
             $(this).remove();
         });
-        $( "#task_country" ).change(function () {
-            var value = $( "#task_country option:selected" ).attr('value');
+        function summurized() {
+            return function () {
+                var countryCode, quantity;
+                countryCode = $("#task_country option:selected").attr('value');
+                quantity = $("#task_quantity").val() || 1;
 
-            if ('UA' == value) {
-                $('#buy-button').html('Купити за 120 грн');
-            } else {
-                $('#buy-button').html("Buy by 15$<br><small>10$ calendar + 5$ shipping</small>");
+
+                if ('UA' == countryCode) {
+                    $('#buy-button').html('Купити за ' + 120 * quantity + ' грн');
+                } else {
+                    $('#buy-button').html("Buy by " + (10 * quantity + 5)  + "$<br><small>10$ calendar + 5$ shipping</small>");
+                }
             }
+        }
+        $( "#task_country" ).change(summurized());
+        $( "#task_quantity" ).change(summurized());
 
-            console.log(value);
+        $('.count-up').each(function () {
+            var $this = $(this);
+            jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function () {
+                    $this.text(Math.ceil(this.Counter));
+                }
+            });
         });
     });
 </script>
