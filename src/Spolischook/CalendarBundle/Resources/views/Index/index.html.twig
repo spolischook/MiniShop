@@ -349,6 +349,10 @@
                                 {{ form_errors(form.name, { 'attr': {'class': 'help-block text-danger'} }) }}
                             </div>
                             <div class="form-group">
+                                {{ form_widget(form.quantity, { 'attr': {'placeholder': 'Кількість календарів *'} }) }}
+                                {{ form_errors(form.quantity, { 'attr': {'class': 'help-block text-danger'} }) }}
+                            </div>
+                            <div class="form-group">
                                 {{ form_widget(form.country, { 'attr': {'placeholder': 'Країна *', 'data-live-search': 'true', 'class': 'selectpicker'} }) }}
                                 {{ form_errors(form.country, { 'attr': {'class': 'help-block text-danger'} }) }}
                             </div>
@@ -425,7 +429,7 @@
             if ('UA' == value) {
                 $('#buy-button').html('Купити за 120 грн');
             } else {
-                $('#buy-button').html("Buy by 25$<br><small>10$ calendar + 15$ shipping</small>");
+                $('#buy-button').html("Buy by 15$<br><small>10$ calendar + 5$ shipping</small>");
             }
 
             console.log(value);

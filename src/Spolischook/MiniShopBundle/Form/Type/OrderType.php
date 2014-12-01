@@ -20,6 +20,7 @@ class OrderType extends AbstractType
             ])
             ->add('address')
             ->add('phone')
+            ->add('quantity')
             ->add('comment')
         ;
     }
