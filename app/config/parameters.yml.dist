@@ -23,3 +23,5 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
     adminpass: 123456
+
+    nodejs.modules_path: /usr/local/lib/node_modules
