@@ -18,8 +18,14 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        $form = $form = $this->createForm(new OrderType(), new Order());
+        $form = $this->createForm(new OrderType(), new Order());
+        $moneyCount = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalCash();
+        $calendarCount = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->getTotalInStores();
 
-        return ['form' => $form->createView()];
+        return [
+            'form' => $form->createView(),
+            'moneyCount' => $moneyCount,
+            'calendarCount' => $calendarCount,
+        ];
     }
 }
