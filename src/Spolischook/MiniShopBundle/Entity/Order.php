@@ -69,11 +69,29 @@ class Order
     protected $status;
 
     /**
+     * This needed be moved after many products will be used
+     *
      * @var integer
      *
      * @ORM\Column(name="quantity", type="integer")
      */
-    private $quantity;
+    protected $quantity;
+
+    /**
+     * This needed be moved after many products will be used
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="amount", type="integer")
+     */
+    protected $amount;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string")
+     */
+    protected $currency;
 
     /**
      * @var \DateTime
@@ -319,5 +337,51 @@ class Order
     public function getQuantity()
     {
         return $this->quantity;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param integer $amount
+     * @return Order
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return integer 
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     * @return Order
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 }
