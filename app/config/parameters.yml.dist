@@ -25,3 +25,4 @@ parameters:
     adminpass: 123456
 
     nodejs.modules_path: /usr/local/lib/node_modules
+    jpegoptim_path: /usr/bin/jpegoptim
