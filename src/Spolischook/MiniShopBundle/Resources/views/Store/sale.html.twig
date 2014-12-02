@@ -7,34 +7,7 @@
     <div class="row">
         <div class="col-md-4">
             <form role="form" method="post">
-                <div class="form-group">
-                    <label for="store">Название склада</label>
-                    <input name="store" id="store" type="text" disabled required class="form-control" value="{{ store.title }}" />
-                </div>
-                <div class="form-group">
-                    <label for="product">Название товара</label>
-                    <input name="product" id="product" type="text" disabled required class="form-control" value="{{ store.product.title }}" />
-                </div>
-                <div class="form-group">
-                    <label for="price">Цена товара</label>
-                    <input name="price" id="price" type="number" min="0" required class="form-control" value="{{ store.product.price }}" />
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Количество</label>
-                    <input name="quantity" type="number" min="1" required class="form-control" id="quantity">
-                </div>
-                <div class="form-group">
-                    <label for="method-of-payment">Метод оплаты</label>
-                    <select name="method-of-payment" id="method-of-payment" class="form-control">
-                        <option disabled>Выберите метод оплаты</option>
-                        <option value="cash">Наличные</option>
-                        <option value="card">На карту</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Коментарий</label>
-                    <input name="comment" id="comment" type="text" class="form-control" id="quantity">
-                </div>
+                {{ form_widget(form) }}
                 <br>
                 <button type="submit" class="btn btn-default">Продать</button>
             </form>

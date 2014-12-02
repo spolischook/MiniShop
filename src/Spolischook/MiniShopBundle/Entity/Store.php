@@ -236,4 +236,9 @@ class Store
 
         return $salesItems;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

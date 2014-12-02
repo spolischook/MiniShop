@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Spolischook\MiniShopBundle\Entity\ProductSale;
 use Spolischook\MiniShopBundle\Entity\ProductTransfer;
 use Spolischook\MiniShopBundle\Entity\Store;
+use Spolischook\MiniShopBundle\Form\Type\ProductSaleType;
 use Spolischook\MiniShopBundle\Repository\StoreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -83,24 +84,22 @@ class StoreController extends Controller
     public function saleAction(Request $request, $slug)
     {
         $store = $this->getStoreRepository()->findOneBySlug($slug);
+        $product = $this->getProductRepository()->findOneBy([]);
+        $productSale = new ProductSale();
+        $productSale->setStore($store);
 
-        if ($request->isMethod('POST')) {
-            $productSale = new ProductSale();
-            $productSale
-                ->setStore($store)
-                ->setQuantity($request->request->get('quantity'))
-                ->setPrice($request->request->get('price'))
-                ->setMethodOfPayment($request->request->get('method-of-payment'))
-                ->setComment($request->request->get('comment'))
-            ;
+        $form = $this->createForm(new ProductSaleType($product), $productSale);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
             $this->getDoctrine()->getManager()->persist($productSale);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
         }
 
-        return ['store' => $store];
+        return ['form' => $form->createView()];
     }
 
     /**
