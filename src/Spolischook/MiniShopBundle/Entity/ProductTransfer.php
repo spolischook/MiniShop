@@ -4,6 +4,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Store
@@ -179,5 +180,17 @@ class ProductTransfer implements ProductMovingInterface
     public function getTo()
     {
         return $this->getStoreTo()->getTitle();
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->getStoreFrom()->getId() === $this->getStoreTo()->getId()) {
+            $context->buildViolation('You can\'t move product to the same store')
+                ->atPath('storeTo')
+                ->addViolation();
+        }
     }
 }

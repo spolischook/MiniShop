@@ -56,10 +56,6 @@ class StoreController extends Controller
             $storeTo   = $this->getStoreRepository()->find($request->request->get('to'));
             $quantity  = $request->request->get('quantity');
 
-            if ($storeFrom->getId() === $storeTo->getId()) {
-                throw new \Exception('You can\'t move product to the same store');
-            }
-
             $productTransfer = new ProductTransfer();
             $productTransfer
                 ->setStoreFrom($storeFrom)
