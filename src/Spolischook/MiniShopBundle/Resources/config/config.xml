@@ -3,9 +3,13 @@
            xmlns:doctrine="http://symfony.com/schema/dic/doctrine">
 
     <services>
-        <service id="my.subscriber" class="Spolischook\MiniShopBundle\EventListener\OrderSubscriber">
+        <service id="spolischook.mini_shop.order_subscriber" class="Spolischook\MiniShopBundle\EventListener\OrderSubscriber">
             <argument type="string">%secret%</argument>
             <tag name="doctrine.event_subscriber" connection="default" />
+        </service>
+
+        <service id="spolischook.mini_shop.shop_extension" class="Spolischook\MiniShopBundle\Twig\ShopExtension">
+            <tag name="twig.extension" />
         </service>
     </services>
 </container>

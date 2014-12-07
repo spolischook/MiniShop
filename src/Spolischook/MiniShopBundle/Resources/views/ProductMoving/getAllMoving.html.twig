@@ -11,7 +11,7 @@
                     <th>From</th>
                     <th></th>
                     <th>To</th>
-                    <th>Количество</th>
+                    <th colspan="2">Количество</th>
                 </tr>
                 {% for productMoving in productMovings %}
                     {% if loop.first %}
@@ -29,6 +29,7 @@
                             <td><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></td>
                             <td>{{ productMoving.to }}</td>
                             <td>{{ productMoving.quantity }}</td>
+                            <td><span class="glyphicon glyphicon-{{ getIconName(productMoving) }}" aria-hidden="true"></span></td>
                         </tr>
                     {% set previousProductMoving = productMoving %}
                 {% endfor %}
