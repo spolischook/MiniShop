@@ -168,4 +168,9 @@ class Product
     {
         return $this->slug;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
