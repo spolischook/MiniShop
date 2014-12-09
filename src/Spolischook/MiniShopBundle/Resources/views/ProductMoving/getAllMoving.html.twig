@@ -54,6 +54,12 @@
         $( document ).ready(function() {
             $( ".delete-product-moving" ).click(function(e) {
                 e.preventDefault();
+                var agreement=confirm('{{ 'are_you_sure_you_whant_to_delete_this_item'|trans }}');
+
+                if (false == agreement) {
+                    return;
+                }
+
                 var deleteButton = this;
 
                 $.ajax({

@@ -2,3 +2,4 @@ card: Карта
 cash: Готівка
 quantity: Кількість
 this_feature_is_not_available: Ця функція ще не реалізована
+are_you_sure_you_whant_to_delete_this_item: Ви впевнені що хочете видалити цю транзакцію?
