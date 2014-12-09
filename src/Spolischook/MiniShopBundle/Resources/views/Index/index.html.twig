@@ -47,11 +47,25 @@
                 </tr>
                 <tr>
                     <td>Всего наличными:</td>
-                    <td>{{ totalCash }} грн</td>
+                    <td>
+                        {{ cashBank.total }} грн
+                        {% if (cashBank.total > 0) %}
+                            &nbsp<a href="{{ path('spolischook_minishop_moneytransfer_formnew', {'id': cashBank.id }) }}" type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Переместить
+                            </a>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>Всего на карту:</td>
-                    <td>{{ totalCard }} грн</td>
+                    <td>
+                        {{ cardBank.total }} грн
+                        {% if (cardBank.total > 0) %}
+                            &nbsp<a href="{{ path('spolischook_minishop_moneytransfer_formnew', {'id': cardBank.id }) }}" type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Переместить
+                        </a>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>Всего продано:</td>

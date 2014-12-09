@@ -2,7 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Entity;
 
-interface ProductMovingInterface
+interface ItemMovingInterface
 {
     public function getId();
 

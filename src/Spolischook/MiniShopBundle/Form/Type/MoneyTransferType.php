@@ -2,6 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Form\Type;
 
+use Spolischook\MiniShopBundle\Entity\Bank;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -11,12 +12,9 @@ class MoneyTransferType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fromAccount', 'choice', [
-                'choices' => ['card' => 'З карти', 'cash' => 'From cash'],
-            ])
-            ->add('toAccount', 'choice', [
-                'choices' => ['card' => 'На карту', 'cash' => 'To cash'],
-            ])
+            ->add('fromBank', null, ['disabled' => true])
+            ->add('toBank')
+            ->add('quantity')
             ->add('comment')
         ;
     }

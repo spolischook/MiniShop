@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\HasLifecycleCallbacks()
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-class ProductTransfer implements ProductMovingInterface
+class ProductTransfer implements ItemMovingInterface
 {
     /**
      * @var integer

@@ -2,7 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Twig;
 
-use Spolischook\MiniShopBundle\Entity\ProductMovingInterface;
+use Spolischook\MiniShopBundle\Entity\ItemMovingInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class ShopExtension extends \Twig_Extension
@@ -34,12 +34,12 @@ class ShopExtension extends \Twig_Extension
         );
     }
 
-    public function getClassName(ProductMovingInterface $productMoving)
+    public function getClassName(ItemMovingInterface $productMoving)
     {
         return strtolower(array_pop(explode('\\', get_class($productMoving))));
     }
 
-    public function getIconName(ProductMovingInterface $productMoving)
+    public function getIconName(ItemMovingInterface $productMoving)
     {
         switch (get_class($productMoving)) {
             case 'Spolischook\MiniShopBundle\Entity\ProductSale':
@@ -52,6 +52,8 @@ class ShopExtension extends \Twig_Extension
                 break;
             case 'Spolischook\MiniShopBundle\Entity\ProductTransfer':
                 return 'transfer';
+            case 'Spolischook\MiniShopBundle\Entity\MoneyTransfer':
+                return 'random';
         }
     }
 

@@ -16,6 +16,10 @@
             <tag name="doctrine.event_subscriber" connection="default" />
         </service>
 
+        <service id="spolischook.mini_shop.money_transfer_subscriber" class="Spolischook\MiniShopBundle\EventListener\MoneyTransferSubscriber">
+            <tag name="doctrine.event_subscriber" connection="default" />
+        </service>
+
         <service id="spolischook.mini_shop.shop_extension" class="Spolischook\MiniShopBundle\Twig\ShopExtension">
             <tag name="twig.extension" />
             <argument type="service" id="router" />

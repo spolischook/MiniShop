@@ -2,8 +2,11 @@
 
 namespace Spolischook\MiniShopBundle\Controller;
 
+use Spolischook\MiniShopBundle\Entity\Bank;
+use Spolischook\MiniShopBundle\Entity\MoneyTransfer;
 use Spolischook\MiniShopBundle\Form\Type\MoneyTransferType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,13 +18,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class MoneyTransferController extends Controller
 {
     /**
-     * @Template()
-     * @Route("/new")
+     * @Template(template="@MiniShop/MoneyTransfer/form.html.twig")
+     * @Route("/new/banks/{id}")
      * @Method({"GET", "POST"})
      */
-    public function formTransferAction(Request $request)
+    public function formNewAction(Request $request, Bank $bank)
     {
-        $form = $this->createForm(new MoneyTransferType());
+        $moneyTransfer = new MoneyTransfer();
+        $moneyTransfer->setFromBank($bank);
+
+        $form = $this->createForm(new MoneyTransferType(), $moneyTransfer);
 
         $form->handleRequest($request);
 
@@ -42,8 +48,15 @@ class MoneyTransferController extends Controller
         return ['form' => $form->createView()];
     }
 
-    public function formEditAction()
+    /**
+     * @Route("/{id}")
+     * @Method({"DELETE"})
+     */
+    public function deleteAction(MoneyTransfer $moneyTransfer)
     {
+        $this->getDoctrine()->getManager()->remove($moneyTransfer);
+        $this->getDoctrine()->getManager()->flush();
 
+        return JsonResponse::create();
     }
 }

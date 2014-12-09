@@ -5,6 +5,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * MoneyTransfer
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks()
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-class MoneyTransfer
+class MoneyTransfer implements ItemMovingInterface
 {
     /**
      * @var integer
@@ -29,6 +30,7 @@ class MoneyTransfer
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank")
+     * @Assert\NotBlank()
      */
     private $fromBank;
 
@@ -36,6 +38,7 @@ class MoneyTransfer
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank")
+     * @Assert\NotBlank()
      */
     private $toBank;
 
@@ -50,7 +53,7 @@ class MoneyTransfer
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
@@ -216,5 +219,50 @@ class MoneyTransfer
     public function getToBank()
     {
         return $this->toBank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrom()
+    {
+        return 'Bank type: ' . $this->getFromBank()->getType();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTo()
+    {
+        return 'Bank type: ' . $this->getToBank()->getType();
+    }
+
+    public function getRouterChunkClassName()
+    {
+        return 'moneytransfer';
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validateEqualBank(ExecutionContextInterface $context)
+    {
+        if ($this->getFromBank()->getId() === $this->getToBank()->getId()) {
+            $context->buildViolation('you_cant_move_money_to_the_same_bank')
+                ->atPath('toBank')
+                ->addViolation();
+        }
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validateEnoughMoney(ExecutionContextInterface $context)
+    {
+        if ($this->getFromBank()->getTotal() - $this->getQuantity() < 0) {
+            $context->buildViolation('you_cant_move_more_then', ['%bankTotal%' => $this->getFromBank()->getTotal()])
+                ->atPath('quantity')
+                ->addViolation();
+        }
     }
 }
