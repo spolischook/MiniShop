@@ -349,7 +349,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form method="POST" name="buy" action="{{ path('spolischook_calendar_index_index') }}">
+                <form method="POST" name="buy" action="{{ path('spolischook_calendar_index_index') }}#buy" novalidate>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -370,10 +370,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group" style="height: 62px;">
+                            <div class="form-group{% if form.quantity.vars.errors|length %} text-danger{% endif %}" style="height: 62px;">
                                 {{ form_label(form.quantity, "quantity", { 'label_attr': { 'style': 'max-width: 30%; color: #FFFFFF; float: left; text-transform: uppercase; font-family: Ubuntu,"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 400; padding-top: 15px;' } }) }}
                                 {{ form_widget(form.quantity, { 'attr': {'placeholder': 'Кількість календарів *', 'style': 'max-width: 70%; float: right', 'min': '1'} }) }}
-                                {{ form_errors(form.quantity, { 'attr': {'class': 'help-block text-danger'} }) }}
+                                <div class="clearfix"></div>
+                                {{ form_errors(form.quantity) }}
                             </div>
                             <div class="form-group">
                                 {{ form_widget(form.comment, { 'attr': {'placeholder': 'Напишіть будь що, що забажаєте (необов’язково)'} }) }}

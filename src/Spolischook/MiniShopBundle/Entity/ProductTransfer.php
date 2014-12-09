@@ -49,7 +49,7 @@ class ProductTransfer implements ItemMovingInterface
      *
      *
      * @ORM\Column(name="quantity", type="integer")
-     * @Assert\NotNull()
+     * @Assert\GreaterThan(value="0")
      */
     private $quantity;
 

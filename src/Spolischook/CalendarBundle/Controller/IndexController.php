@@ -31,7 +31,7 @@ class IndexController extends Controller
 
         if ($form->isValid()) {
             $order = $form->getData();
-
+//var_dump($order); exit;
             $this->getDoctrine()->getManager()->persist($order);
             $this->getDoctrine()->getManager()->flush();
 

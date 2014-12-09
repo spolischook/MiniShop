@@ -5,6 +5,8 @@ namespace Spolischook\MiniShopBundle\Form\Type;
 use Spolischook\MiniShopBundle\Entity\Countries;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class OrderType extends AbstractType
@@ -22,6 +24,18 @@ class OrderType extends AbstractType
             ->add('quantity')
             ->add('comment')
         ;
+
+        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+            $order = $event->getData();
+
+            if ('UA' == $order->getCountry()) {
+                $order->setCurrency('UAH');
+                $order->setAmount($order->getQuantity() * 120);
+            } else {
+                $order->setCurrency('USD');
+                $order->setAmount($order->getQuantity() * 10 + 5);
+            }
+        });
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

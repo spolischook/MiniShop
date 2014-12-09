@@ -4,11 +4,13 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Spolischook\MiniShopBundle\Validator\Constraints as MiniShopAssert;
 
 /**
  * Order
  *
- * @ORM\Table(name="order")
+ * @ORM\Table(name="orders")
  * @ORM\Entity()
  */
 class Order
@@ -19,9 +21,9 @@ class Order
     const STATUS_REJECTED  = 'rejected';
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="string")
+     * @ORM\Column(name="id", type="string", unique=true)
      * @ORM\Id
      */
     protected $id;
@@ -30,6 +32,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $name;
 
@@ -37,6 +40,8 @@ class Order
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Country()
      */
     protected $country;
 
@@ -44,6 +49,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $address;
 
@@ -51,13 +57,14 @@ class Order
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
     protected $comment;
 
@@ -66,7 +73,7 @@ class Order
      *
      * @ORM\Column(name="status", type="string", length=255)
      */
-    protected $status;
+    protected $status = self::STATUS_PENDING;
 
     /**
      * This needed be moved after many products will be used
@@ -74,6 +81,8 @@ class Order
      * @var integer
      *
      * @ORM\Column(name="quantity", type="integer")
+     * @Assert\GreaterThan(value="0")
+     * @MiniShopAssert\ProductEnoughQuantity
      */
     protected $quantity;
 
@@ -90,6 +99,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="currency", type="string")
+     * @Assert\Currency
      */
     protected $currency;
 
@@ -355,7 +365,7 @@ class Order
     /**
      * Get amount
      *
-     * @return integer 
+     * @return integer
      */
     public function getAmount()
     {

@@ -713,7 +713,7 @@ section#buy:-ms-input-placeholder {
     color: #bbb;
 }
 
-section#buy .text-danger {
+section#buy div.text-danger span.help-block ul li {
     color: #e74c3c;
 }
 

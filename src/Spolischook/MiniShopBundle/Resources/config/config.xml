@@ -24,5 +24,17 @@
             <tag name="twig.extension" />
             <argument type="service" id="router" />
         </service>
+
+        <service id="spolischook.mini_shop.validator.product_enough_quantity" class="Spolischook\MiniShopBundle\Validator\Constraints\ProductEnoughQuantityValidator">
+            <argument type="service" id="spolischook.mini_shop.repository.store_repository" />
+            <tag name="validator.constraint_validator" alias="product_enough_quantity" />
+        </service>
+
+        <service id="spolischook.mini_shop.repository.store_repository"
+                 class="Spolischook\MiniShopBundle\Repository\StoreRepository"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>MiniShopBundle:Store</argument>
+        </service>
     </services>
 </container>

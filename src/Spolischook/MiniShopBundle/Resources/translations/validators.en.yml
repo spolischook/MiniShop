@@ -1,2 +1,3 @@
 you_cant_move_money_to_the_same_bank: You can't move money to the same bank
 you_cant_move_more_then: You can't move more then %bankTotal%
+you_cant_order_more_then: You can't order more then %number%
