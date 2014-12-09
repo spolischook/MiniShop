@@ -21,8 +21,8 @@ class IndexController extends Controller
         $totalInStores  = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Store')->getTotalInStores();
         $totalSales     = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalSalesCount();
         $totalGifts     = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalGiftsCount();
-        $totalCash      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalCash();
-        $totalCard      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:ProductSale')->getTotalCard();
+        $totalCash      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Bank')->findOneByType('cash')->getTotal();
+        $totalCard      = $this->getDoctrine()->getManager()->getRepository('MiniShopBundle:Bank')->findOneByType('card')->getTotal();
 
         return [
             'stores'        => $stores,

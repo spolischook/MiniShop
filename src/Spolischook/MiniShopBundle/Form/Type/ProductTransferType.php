@@ -2,37 +2,43 @@
 
 namespace Spolischook\MiniShopBundle\Form\Type;
 
-use Spolischook\MiniShopBundle\Entity\Countries;
+use Spolischook\MiniShopBundle\Entity\Store;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OrderType extends AbstractType
+class ProductTransferType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('country', 'country', [
-                'preferred_choices' => ['UA', 'US', 'CA', 'DE', 'AU'],
-                'data' => 'UA',
-            ])
-            ->add('address')
-            ->add('phone')
+            ->add('storeFrom')
+            ->add('storeTo')
             ->add('quantity')
-            ->add('comment')
         ;
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Spolischook\MiniShopBundle\Entity\Order',
+            'data_class' => 'Spolischook\MiniShopBundle\Entity\ProductTransfer',
         ));
     }
 
+    /**
+     * Returns the name of this type.
+     *
+     * @return string The name of this type
+     */
     public function getName()
     {
-        return 'task';
+        return 'product_transfer';
     }
 }

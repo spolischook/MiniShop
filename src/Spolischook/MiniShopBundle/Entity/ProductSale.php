@@ -4,6 +4,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ProductSales
@@ -14,10 +15,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class ProductSale implements ProductMovingInterface
 {
-    const CASH = 'cash';
-
-    const CARD = 'card';
-
     /**
      * @var integer
      *
@@ -37,6 +34,8 @@ class ProductSale implements ProductMovingInterface
     /**
      * @var integer
      *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
@@ -44,6 +43,8 @@ class ProductSale implements ProductMovingInterface
     /**
      * @var integer
      *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
@@ -66,9 +67,18 @@ class ProductSale implements ProductMovingInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="method_of_payment", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Choice(callback = {"Spolischook\MiniShopBundle\Entity\Bank", "getAllowedTypes"}, message = "Allowed 'card' or 'cash'")
+     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank", inversedBy="salesTransactions")
      */
-    private $methodOfPayment;
+    private $bank;
+
+    /**
+     * @var string
+     * @deprecated
+     * @ORM\Column(name="method_of_payment", type="string", length=255, nullable=true)
+     */
+    private $methodOfPayment = null;
 
     /**
      * Get id
@@ -196,33 +206,6 @@ class ProductSale implements ProductMovingInterface
     }
 
     /**
-     * Set methodOfPayment
-     *
-     * @param string $methodOfPayment
-     * @return ProductSale
-     */
-    public function setMethodOfPayment($methodOfPayment)
-    {
-        if (!in_array($methodOfPayment, ['cash', 'card'])) {
-            throw new \Exception('Method must be "cash" or "card"');
-        }
-
-        $this->methodOfPayment = $methodOfPayment;
-
-        return $this;
-    }
-
-    /**
-     * Get methodOfPayment
-     *
-     * @return string
-     */
-    public function getMethodOfPayment()
-    {
-        return $this->methodOfPayment;
-    }
-
-    /**
      * @return string
      */
     public function getFrom()
@@ -239,10 +222,56 @@ class ProductSale implements ProductMovingInterface
     }
 
     /**
-     * @ORM\PrePersist
+     * Set bank
+     *
+     * @param \Spolischook\MiniShopBundle\Entity\Bank $bank
+     * @return ProductSale
      */
-    public function updateStoresQuantity()
+    public function setBank(\Spolischook\MiniShopBundle\Entity\Bank $bank = null)
     {
-        $this->getStore()->setProductQuantity($this->getStore()->getProductQuantity() - $this->getQuantity());
+        $this->bank = $bank;
+
+        return $this;
+    }
+
+    /**
+     * Get bank
+     *
+     * @return \Spolischook\MiniShopBundle\Entity\Bank 
+     */
+    public function getBank()
+    {
+        return $this->bank;
+    }
+
+    /**
+     * Set methodOfPayment
+     * @deprecated
+     * @param string $methodOfPayment
+     * @return ProductSale
+     */
+    public function setMethodOfPayment($methodOfPayment)
+    {
+        $this->methodOfPayment = $methodOfPayment;
+
+        return $this;
+    }
+
+    /**
+     * Get methodOfPayment
+     * @deprecated
+     * @return string 
+     */
+    public function getMethodOfPayment()
+    {
+        return $this->methodOfPayment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouterChunkClassName()
+    {
+        return 'productsale';
     }
 }

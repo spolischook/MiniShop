@@ -2,24 +2,21 @@
 
 namespace Spolischook\MiniShopBundle\Form\Type;
 
-use Spolischook\MiniShopBundle\Entity\Countries;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OrderType extends AbstractType
+class MoneyTransferType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('country', 'country', [
-                'preferred_choices' => ['UA', 'US', 'CA', 'DE', 'AU'],
-                'data' => 'UA',
+            ->add('fromAccount', 'choice', [
+                'choices' => ['card' => 'З карти', 'cash' => 'From cash'],
             ])
-            ->add('address')
-            ->add('phone')
-            ->add('quantity')
+            ->add('toAccount', 'choice', [
+                'choices' => ['card' => 'На карту', 'cash' => 'To cash'],
+            ])
             ->add('comment')
         ;
     }
@@ -27,12 +24,12 @@ class OrderType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Spolischook\MiniShopBundle\Entity\Order',
+            'data_class' => 'Spolischook\MiniShopBundle\Entity\MoneyTransfer',
         ));
     }
 
     public function getName()
     {
-        return 'task';
+        return 'money_transfer';
     }
 }

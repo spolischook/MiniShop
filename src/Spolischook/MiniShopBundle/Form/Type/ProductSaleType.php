@@ -2,6 +2,7 @@
 
 namespace Spolischook\MiniShopBundle\Form\Type;
 
+use Spolischook\MiniShopBundle\Entity\Bank;
 use Spolischook\MiniShopBundle\Entity\Countries;
 use Spolischook\MiniShopBundle\Entity\Product;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +30,7 @@ class ProductSaleType extends AbstractType
             ])
             ->add('price')
             ->add('quantity')
-            ->add('methodOfPayment')
+            ->add('bank')
             ->add('comment')
         ;
     }

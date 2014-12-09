@@ -4,6 +4,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -29,6 +30,7 @@ class ProductTransfer implements ProductMovingInterface
      *
      * @ORM\ManyToOne(targetEntity="Store")
      * @ORM\JoinColumn(name="from_store_id", referencedColumnName="id")
+     * @Assert\NotNull()
      */
     private $storeFrom;
 
@@ -37,13 +39,16 @@ class ProductTransfer implements ProductMovingInterface
      *
      * @ORM\ManyToOne(targetEntity="Store")
      * @ORM\JoinColumn(name="to_store_id", referencedColumnName="id")
+     * @Assert\NotNull()
      */
     private $storeTo;
 
     /**
      * @var integer
      *
+     *
      * @ORM\Column(name="quantity", type="integer")
+     * @Assert\NotNull()
      */
     private $quantity;
 
@@ -158,15 +163,6 @@ class ProductTransfer implements ProductMovingInterface
     }
 
     /**
-     * @ORM\PrePersist
-     */
-    public function updateStoresQuantity()
-    {
-        $this->storeFrom->setProductQuantity($this->storeFrom->getProductQuantity() - $this->quantity);
-        $this->storeTo->setProductQuantity($this->storeTo->getProductQuantity() + $this->quantity);
-    }
-
-    /**
      * @return string
      */
     public function getFrom()
@@ -187,10 +183,22 @@ class ProductTransfer implements ProductMovingInterface
      */
     public function validate(ExecutionContextInterface $context)
     {
+        if (!$this->getStoreTo() || !$this->getStoreFrom()) {
+            return;
+        }
+
         if ($this->getStoreFrom()->getId() === $this->getStoreTo()->getId()) {
             $context->buildViolation('You can\'t move product to the same store')
                 ->atPath('storeTo')
                 ->addViolation();
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouterChunkClassName()
+    {
+        return 'producttransfer';
     }
 }

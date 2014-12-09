@@ -25,9 +25,18 @@
                         <ul class="nav navbar-nav navbar-left">
                             <li><a href="{{ path('spolischook_minishop_store_new') }}">Создать Склад</a></li>
                             <li><a href="{{ path('spolischook_minishop_productmoving_getallmoving') }}">Движение товара</a></li>
+                            <li><a href="{{ path('spolischook_minishop_moneytransfer_formtransfer') }}">Money Transfer</a></li>
                         </ul>
                     </div><!-- /.container-fluid -->
                 </nav>
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="alert alert-success" role="alert">{{ flashMessage|trans }}</div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="alert alert-danger" role="alert">{{ flashMessage|trans }}</div>
+                {% endfor %}
                 {% block container %}
 
                 {% endblock %}

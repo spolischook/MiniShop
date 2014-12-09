@@ -22,10 +22,10 @@
                         <td>{{ store.giftItemsCount }}</td>
                         <td>
                             {% if store.productQuantity > 0 %}
-                                <a href="{{ path('spolischook_minishop_store_sale', {'slug': store.slug }) }}" type="button" class="btn btn-default" aria-label="Left Align">
+                                <a href="{{ path('spolischook_minishop_productsale_formnew', {'slug': store.slug }) }}" type="button" class="btn btn-default" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Продать
                                 </a>
-                                <a href="{{ path('spolischook_minishop_store_transfer', {'slug': store.slug }) }}" type="button" class="btn btn-default" aria-label="Left Align">
+                                <a href="{{ path('spolischook_minishop_producttransfer_formnew', {'slug': store.slug }) }}" type="button" class="btn btn-default" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Переместить
                                 </a>
                             {% endif %}

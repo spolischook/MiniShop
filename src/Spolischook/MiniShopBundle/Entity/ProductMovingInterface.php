@@ -4,6 +4,8 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 interface ProductMovingInterface
 {
+    public function getId();
+
     /**
      * @return string
      */
@@ -23,4 +25,6 @@ interface ProductMovingInterface
      * @return \DateTime
      */
     public function getCreatedAt();
+
+    public function getRouterChunkClassName();
 }

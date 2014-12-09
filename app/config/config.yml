@@ -76,6 +76,12 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/../src/Spolischook/CalendarBundle/DoctrineMigrations
+    namespace: Spolischook\CalendarBundle\DoctrineMigrations
+    table_name: migration_versions
+    name: Application Migrations
+
 stof_doctrine_extensions:
     default_locale: en_US
     orm:

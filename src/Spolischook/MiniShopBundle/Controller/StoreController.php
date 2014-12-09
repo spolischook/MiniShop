@@ -5,7 +5,6 @@ namespace Spolischook\MiniShopBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Spolischook\MiniShopBundle\Entity\ProductSale;
-use Spolischook\MiniShopBundle\Entity\ProductTransfer;
 use Spolischook\MiniShopBundle\Entity\Store;
 use Spolischook\MiniShopBundle\Form\Type\ProductSaleType;
 use Spolischook\MiniShopBundle\Repository\StoreRepository;
@@ -41,61 +40,6 @@ class StoreController extends Controller
         }
 
         return ['products' => $this->getProductRepository()->findAll()];
-    }
-
-    /**
-     * @Template()
-     * @Route("/transfer/{slug}")
-     * @Method({"GET", "POST"})
-     */
-    public function transferAction(Request $request, $slug)
-    {
-        $storeFrom = $this->getStoreRepository()->findOneBySlug($slug);
-
-        if ($request->isMethod('POST')) {
-            $storeTo   = $this->getStoreRepository()->find($request->request->get('to'));
-            $quantity  = $request->request->get('quantity');
-
-            $productTransfer = new ProductTransfer();
-            $productTransfer
-                ->setStoreFrom($storeFrom)
-                ->setStoreTo($storeTo)
-                ->setQuantity($quantity)
-            ;
-
-            $this->getDoctrine()->getManager()->persist($productTransfer);
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
-        }
-
-        return ['stores' => $this->getStoreRepository()->findAllExceptOne($storeFrom), 'storeFrom' => $storeFrom];
-    }
-
-    /**
-     * @Template()
-     * @Route("/sales/{slug}")
-     * @Method({"GET", "POST"})
-     */
-    public function saleAction(Request $request, $slug)
-    {
-        $store = $this->getStoreRepository()->findOneBySlug($slug);
-        $product = $this->getProductRepository()->findOneBy([]);
-        $productSale = new ProductSale();
-        $productSale->setStore($store);
-
-        $form = $this->createForm(new ProductSaleType($product), $productSale);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $this->getDoctrine()->getManager()->persist($productSale);
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
-        }
-
-        return ['form' => $form->createView()];
     }
 
     /**
