@@ -5,6 +5,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * ProductSales
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="product_sale")
  * @ORM\Entity(repositoryClass="Spolischook\MiniShopBundle\Repository\ProductSaleRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class ProductSale implements ProductMovingInterface
 {
@@ -56,6 +58,13 @@ class ProductSale implements ProductMovingInterface
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
 
     /**
      * @var string
@@ -273,5 +282,40 @@ class ProductSale implements ProductMovingInterface
     public function getRouterChunkClassName()
     {
         return 'productsale';
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return ProductSale
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validateStoreQuantity(ExecutionContextInterface $context)
+    {
+        if ($this->getStore()->getProductQuantity() - $this->getQuantity() < 0) {
+            $context->buildViolation('Not enough goods in a store')
+                ->atPath('quantity')
+                ->addViolation();
+        }
     }
 }

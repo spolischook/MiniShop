@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="money_transfer")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class MoneyTransfer
 {
@@ -27,18 +28,16 @@ class MoneyTransfer
     /**
      * @var string
      *
-     * @ORM\Column(name="from_account", type="string", length=255)
-     * @Assert\Choice(choices = {"card", "cash"}, message = "Allowed 'card' or 'cash'")
+     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank")
      */
-    private $fromAccount;
+    private $fromBank;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="to_account", type="string", length=255)
-     * @Assert\Choice(choices = {"card", "cash"}, message = "Allowed 'card' or 'cash'")
+     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank")
      */
-    private $toAccount;
+    private $toBank;
 
     /**
      * @var string
@@ -63,6 +62,13 @@ class MoneyTransfer
      */
     private $createdAt;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
 
     /**
      * Get id
@@ -72,52 +78,6 @@ class MoneyTransfer
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set fromAccount
-     *
-     * @param string $fromAccount
-     * @return MoneyTransfer
-     */
-    public function setFromAccount($fromAccount)
-    {
-        $this->fromAccount = $fromAccount;
-
-        return $this;
-    }
-
-    /**
-     * Get fromAccount
-     *
-     * @return string 
-     */
-    public function getFromAccount()
-    {
-        return $this->fromAccount;
-    }
-
-    /**
-     * Set toAccount
-     *
-     * @param string $toAccount
-     * @return MoneyTransfer
-     */
-    public function setToAccount($toAccount)
-    {
-        $this->toAccount = $toAccount;
-
-        return $this;
-    }
-
-    /**
-     * Get toAccount
-     *
-     * @return string 
-     */
-    public function getToAccount()
-    {
-        return $this->toAccount;
     }
 
     /**
@@ -187,5 +147,74 @@ class MoneyTransfer
     public function getQuantity()
     {
         return $this->quantity;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return MoneyTransfer
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set fromBank
+     *
+     * @param \Spolischook\MiniShopBundle\Entity\Bank $fromBank
+     * @return MoneyTransfer
+     */
+    public function setFromBank(\Spolischook\MiniShopBundle\Entity\Bank $fromBank = null)
+    {
+        $this->fromBank = $fromBank;
+
+        return $this;
+    }
+
+    /**
+     * Get fromBank
+     *
+     * @return \Spolischook\MiniShopBundle\Entity\Bank 
+     */
+    public function getFromBank()
+    {
+        return $this->fromBank;
+    }
+
+    /**
+     * Set toBank
+     *
+     * @param \Spolischook\MiniShopBundle\Entity\Bank $toBank
+     * @return MoneyTransfer
+     */
+    public function setToBank(\Spolischook\MiniShopBundle\Entity\Bank $toBank = null)
+    {
+        $this->toBank = $toBank;
+
+        return $this;
+    }
+
+    /**
+     * Get toBank
+     *
+     * @return \Spolischook\MiniShopBundle\Entity\Bank 
+     */
+    public function getToBank()
+    {
+        return $this->toBank;
     }
 }

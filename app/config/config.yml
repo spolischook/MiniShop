@@ -74,7 +74,13 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
 
 doctrine_migrations:
     dir_name: %kernel.root_dir%/../src/Spolischook/CalendarBundle/DoctrineMigrations

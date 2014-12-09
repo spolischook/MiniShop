@@ -37,6 +37,7 @@ class Bank
      * @var integer
      *
      * @ORM\Column(name="total", type="integer")
+     * @Assert\GreaterThanOrEqual(value = 0)
      */
     private $total;
 

@@ -4,6 +4,7 @@ namespace Spolischook\MiniShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Store
@@ -26,6 +27,7 @@ class Store
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -39,6 +41,7 @@ class Store
      * @var integer
      *
      * @ORM\Column(name="product_quantity", type="integer", nullable=true)
+     * @Assert\GreaterThanOrEqual(value = 0)
      */
     private $productQuantity;
 
@@ -52,7 +55,7 @@ class Store
     /**
      * @var \Spolischook\MiniShopBundle\Entity\ProductSale
      *
-     * @ORM\OneToMany(targetEntity="Spolischook\MiniShopBundle\Entity\ProductSale", mappedBy="store")
+     * @ORM\OneToMany(targetEntity="Spolischook\MiniShopBundle\Entity\ProductSale", mappedBy="store", fetch="EAGER")
      */
     private $productSales;
 
@@ -105,10 +108,6 @@ class Store
      */
     public function setProductQuantity($productQuantity)
     {
-        if ($productQuantity < 0) {
-            throw new \Exception('Quantity can\'t be less then zero');
-        }
-
         $this->productQuantity = $productQuantity;
 
         return $this;

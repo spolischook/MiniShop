@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Table(name="product_transfer")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class ProductTransfer implements ProductMovingInterface
 {
@@ -59,6 +60,13 @@ class ProductTransfer implements ProductMovingInterface
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
 
     /**
      * Get id
@@ -195,10 +203,45 @@ class ProductTransfer implements ProductMovingInterface
     }
 
     /**
+     * @Assert\Callback
+     */
+    public function validateStoreQuantity(ExecutionContextInterface $context)
+    {
+        if ($this->getStoreFrom()->getProductQuantity() - $this->getQuantity() < 0) {
+            $context->buildViolation('Not enough goods in a store')
+                ->atPath('quantity')
+                ->addViolation();
+        }
+    }
+
+    /**
      * @return string
      */
     public function getRouterChunkClassName()
     {
         return 'producttransfer';
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return ProductTransfer
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }
