@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new \Spolischook\MiniShopBundle\MiniShopBundle(),
             new \Spolischook\CalendarBundle\CalendarBundle(),

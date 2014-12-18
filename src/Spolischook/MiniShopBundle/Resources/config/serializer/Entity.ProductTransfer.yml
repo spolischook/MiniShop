@@ -1,0 +1,20 @@
+Spolischook\MiniShopBundle\Entity\ProductTransfer:
+    exclusion_policy: ALL
+    virtual_properties:
+        getFrom:
+            expose: true
+            type: string
+        getTo:
+            expose: true
+            type: string
+        getRouterChunkClassName:
+            expose: true
+            type: string
+    properties:
+        quantity:
+            expose: true
+            type: integer
+            access_type: public_method
+        createdAt:
+            expose: true
+            type: DateTime<'Y-m-d'>
