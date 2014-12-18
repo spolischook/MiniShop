@@ -29,7 +29,7 @@ class ProductSale implements ItemMovingInterface
     /**
      * @var \Spolischook\MiniShopBundle\Entity\Store
      *
-     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Store", inversedBy="productSales")
+     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Store", inversedBy="productSales", fetch="EAGER")
      */
     private $store;
 
@@ -78,7 +78,7 @@ class ProductSale implements ItemMovingInterface
      *
      * @Assert\NotBlank()
      * @Assert\Choice(callback = {"Spolischook\MiniShopBundle\Entity\Bank", "getAllowedTypes"}, message = "Allowed 'card' or 'cash'")
-     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank", inversedBy="salesTransactions")
+     * @ORM\ManyToOne(targetEntity="Spolischook\MiniShopBundle\Entity\Bank", inversedBy="salesTransactions", fetch="EAGER")
      */
     private $bank;
 
