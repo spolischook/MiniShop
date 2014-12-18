@@ -52,12 +52,12 @@ class ProductSaleController extends Controller
      */
     public function formEditAction(Request $request, ProductSale $productSale)
     {
-        $request->getSession()->getFlashBag()->add(
-            'error',
-            'this_feature_is_not_available'
-        );
-
-        return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
+//        $request->getSession()->getFlashBag()->add(
+//            'error',
+//            'this_feature_is_not_available'
+//        );
+//
+//        return $this->redirect($this->get('router')->generate('spolischook_minishop_index_index'));
 
         $product = $this->getProductRepository()->findOneBy([]);
         $form = $this->createForm(new ProductSaleType($product), $productSale);
